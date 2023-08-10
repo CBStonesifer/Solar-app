@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Borel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+:root {
+  --whiteColor: rgb(255, 255, 255);
+  --lightPurple:rgb(255, 208, 249);
+  --midPurple:rgb(138, 43, 226);
+  --darkPurple: rgb(68, 0, 131);
+}
+
+
+.entry-page {
+  text-align: center;
+  background-color: var(--lightPurple);
+  width: 100vw;
+  height: 120vh;
+}
+
+.back-button {
+  background-color: var(--lightPurple);
+  text-decoration: none;
+  font-family: 'Borel';
+  font-weight: 800;
+  color: var(--midPurple);
+  font-size: 32px;
+  border: none;
+  margin-top: 5%;
+  cursor: pointer;
+}
+
+.solar-title {
+  text-align: center;
+  color: var(--whiteColor);
+  font-size: 72px;
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  
+}
+.solar-OR {
+  text-align: center;
+  color: var(--whiteColor);
+  font-size: 32px;
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+  
+}
+.entry-title {
+  text-align: center;
+  color: var(--whiteColor);
+  font-size: 32px;
+  text-decoration: none;
+  font-family: 'Borel', sans-serif;
+}
+.title-section {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.info-text {
+  text-align: left;
+  color: var(--darkPurple);
+  font-size: 18px;
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+}
+.input-box {
+  width: 100%;
+  height: 32px;
+  flex-shrink: 0;
+  padding: 3px;
+  border-color: var(--midPurple);
+  border-width: 3px;
+  margin: 3px;
+  border-radius: 10px;
+}
+
+.input-label {
+  text-align: left;
+  float: left;
+  color:var(--darkPurple);
+  font-family: 'Raleway', sans-sarif; 
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  column-gap: 10px;
+  row-gap: 1em;
+}
+
+.title-spacing {
+  display: flex;
+  line-height: 1;
+  word-break: normal;
+  margin: 0%;
+  padding:0%;
+}
+.bold-title {
+  text-align: left;
+  color: var(--midPurple);
+  font-size: 72px;
+  text-decoration: none;
+  font-family: 'Borel', sans-serif;
+  font-weight: 900;
+}
+.regular-title {
+  text-align:left;
+  color: var(--midPurple);
+  font-size: 56px;
+  text-decoration: none;
+  font-family: 'Borel', sans-serif;
+  font-weight: 100;
+}
+
+.bold-text {
+  font-weight: 700;
+}
+
+.next-button {
+  padding: 20px 10px 0px 10px;
+  background-color: var(--darkPurple);
+  font-family: 'Borel', sans-serif;
+  font-weight: 800;
+  color: var(--whiteColor);
+  font-size: 32px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+}

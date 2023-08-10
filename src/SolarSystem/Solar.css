@@ -1,0 +1,106 @@
+:root {
+    --whiteColor: rgb(255, 255, 255);
+    --lightPurple:rgb(255, 208, 249);
+    --midPurple:rgb(138, 43, 226);
+    --darkPurple: rgb(68, 0, 131);
+  }
+
+.solar-page {
+    text-align: center;
+    background-color: var(--whiteColor);
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .interactive-system {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .container {
+    display: grid;
+    height: 100vh;
+    width: 100%;
+  
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 8fr 2fr;
+    grid-template-areas:
+      "sidebar"
+      "main"
+      "contents";
+    grid-gap: 3px;
+  }
+  
+  .sidebar {
+    background-color: var(--whiteColor);
+    grid-area: sidebar;
+    height:auto;
+  }
+  .add-friend {
+    float: right;
+  }
+  
+  .main {
+    background-color: var(--whiteColor);
+    grid-area: main;
+  }
+  
+  .content {
+    background-color: var(--lightPurple);
+    grid-area: contents;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+  }
+
+  .solar-main-title {
+    text-align: center;
+    color: var(--darkPurple);
+    font-size: 72px;
+    text-decoration: none;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    margin-bottom: 0px;
+    
+  }
+
+  .layout-main {
+
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    grid-auto-rows: 10vh;
+    grid-gap: 20px;
+  }
+
+  .grid-item-main {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .grid-item-button {
+    background-color: var(--lightPurple);
+    width: 120px;
+    height: 120px;
+  }
+  .menu-item {
+    background-size: contain;
+    background-position: center center;
+    background-repeat:   no-repeat;
+    border: none;
+  }
+
+  .reminder {
+    background-image: url(/src/SolarSystem/bell.png);
+  }
+  .link {
+    background-image: url(/src/SolarSystem/Link.png);
+  }
+  .contact {
+    background-image: url(/src/SolarSystem/Contacts.png);
+  }
+  .inbox {
+    background-image: url(/src/SolarSystem/imbox.png);
+  }
