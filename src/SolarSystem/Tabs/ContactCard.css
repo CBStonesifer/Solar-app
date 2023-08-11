@@ -1,0 +1,56 @@
+:root {
+    --whiteColor: rgb(255, 255, 255);
+    --lightPurple:rgb(255, 208, 249);
+    --midPurple:rgb(138, 43, 226);
+    --darkPurple: rgb(68, 0, 131);
+  }
+
+.contact-container {
+    display: flex;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+.contact-image-container,
+.contact-ext-container,
+.contact-buttons-container {
+    display: inline-block;
+    vertical-align: middle; /* To vertically align the content */
+}
+.contact-image-container {
+    width: 30%;
+    padding-right: 10px;
+}
+  
+.contact-image-container img {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    object-fit: cover;
+    
+}
+  
+.contact-text-container {
+    width: 40%;
+}
+  
+.contact-buttons-container {
+    width: 30%;
+    text-align: right;
+}
+
+.contact-buttons-container button {
+    margin-left: 10px;
+    padding: 1vh 1vh 0vh 1vh;
+    background-color: var(--darkPurple);
+    font-family: 'Borel', sans-serif;
+    font-weight: 600;
+    color: var(--whiteColor);
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}

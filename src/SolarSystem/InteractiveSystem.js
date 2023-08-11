@@ -1,7 +1,8 @@
 import React from 'react';
 import './SolarDesign.css';
+import { background } from '@chakra-ui/react';
 
-function InteractiveSystem(){
+function InteractiveSystem(props){
 
 
     return(
@@ -14,7 +15,8 @@ function InteractiveSystem(){
       <div className="small-ring-main">
         <div className="circleBig-main circle-big-main"></div>
       </div>
-      <div className="center-circle-main">
+      <div className="center-circle-main" style={{backgroundImage: `url(${props.value}`}}>
+
       </div>
     </div>
         </div>

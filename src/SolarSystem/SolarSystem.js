@@ -3,12 +3,11 @@ import { MapInteractionCSS } from 'react-map-interaction';
 import "./Solar.css"
 import { useNavigate } from "react-router-dom";
 import InteractiveSystem from './InteractiveSystem'
-import solarSystem from "./solar_system.png"
 import { query, collection, where, getDocs, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
-import { auth, db } from "../firebase/config";
+import { auth, db, storage } from "../firebase/config";
 import Overlay from "./Overlay";
-import {  signOut } from "firebase/auth";
-import { Firestore } from "firebase/firestore";
+import { signOut } from "firebase/auth";
+import { getDownloadURL, ref } from "firebase/storage";
 
 function SolarSystem({navigation}) {
     let navigate = useNavigate();
@@ -31,6 +30,7 @@ function SolarSystem({navigation}) {
     })
 
     const[newFriend, setNewFriend] = useState();
+    const[pfp, setPFP] = useState()
 
     const findFriend = async( phoneNumber ) => {
         let userRef = collection(db, "users");
@@ -58,29 +58,6 @@ function SolarSystem({navigation}) {
         }).catch(error => {
             console.log(error)
         })
-        // await getDoc(userDoc).then(Fdoc => {
-        //     try{
-        //         //this in theory should work
-        //         updateDoc(Fdoc, {
-        //             friend: arrayUnion(newFriend)
-        //         })
-        //         //parse the users friends and lookup their documents in the database
-        //         // Fdoc.data().friend.forEach(async (connection) => {
-        //         //     let friendDoc = doc(db, "users", (connection))
-        //         //     await getDoc(friendDoc).then((Fdoc) => {
-        //         //         try {
-        //         //             console.log(Fdoc.data().firstName)
-        //         //         } catch{
-        //         //             console.log("User no longer exists")
-        //         //         }
-        //         //     })})
-        //     } catch {
-        //         console.log("Current user info not found")
-
-        //     }
-        // })
-        
-
     }
     const [isOpen, setIsOpen] = useState(false);
 
@@ -98,14 +75,25 @@ function SolarSystem({navigation}) {
         })
     }
 
-    const TabHandler = (e) => {
-        const { name } = e.target;
-        navigate(`/src/SolarSystem/Tabs/${name}.js`)
+    const getPFP = async() => {
+        const pfpRef = ref(storage, `profilePictures/pfp${auth.currentUser.uid}`)
+        getDownloadURL(pfpRef).then((url) => {
+            setPFP(url)
+            console.log(pfp)
+        }).catch((error) => {
+            console.log("No PFP found:"+ error)
+        })
+
     }
 
-    // useEffect(() => {
-    //     console.log(newFriend)
-    // })
+    const TabHandler = (e) => {
+        const { name } = e.target;
+        navigate(`/src/SolarSystem/Tabs/${name}.js`, {userID: auth.currentUser.uid})
+    }
+
+    useEffect(() => {
+        getPFP();
+    }, [pfp])
 
     //INSIDE THE OVERLAY below, Design a text field to look up users with their name and number, then add them to their database of friends:
     //Also design database of friends to collect users by category
@@ -133,7 +121,7 @@ function SolarSystem({navigation}) {
                             yMin:-50,
                             xMin:-1100,
                         }}>
-                            <InteractiveSystem />
+                            <InteractiveSystem value={pfp}/>
                 </MapInteractionCSS>
 
 

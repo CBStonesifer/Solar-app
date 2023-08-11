@@ -2,8 +2,9 @@ import '../ComponentStyles.css'
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react'
-import { auth, db } from '../firebase/config'
+import { auth, db, storage } from '../firebase/config'
 import { doc, setDoc } from "firebase/firestore"; 
+import { ref, uploadBytes } from "firebase/storage"
 
 
 
@@ -17,6 +18,8 @@ function AdditionalInfo({navigation}){
             hangOuts:"",
         }
     })
+    const [imageUpload, setImageUpload] = useState(null)
+
 
     const UserHandler = (e) => {
         const { name, value } = e.target;
@@ -27,8 +30,22 @@ function AdditionalInfo({navigation}){
             }
         })
     }
+    const uploadImage = () => {
+        if(imageUpload == null){
+            return;
+        }
+        const imageRef = ref(storage, `profilePictures/pfp${auth.currentUser.uid}`)
+        uploadBytes(imageRef, imageUpload).then(() => {
+            console.log("Image Uploaded")
+        })
+    }
 
     const sumbitForm = () => {
+        uploadImage()
+        //Update fields here
+            //IMPORTANT: Upload profile picture URL into pfpURL
+
+
         navigate("../../src/SolarSystem/SolarSystem.js")
     }
 
@@ -57,7 +74,9 @@ function AdditionalInfo({navigation}){
                 <i></i>
                     <i></i>
                     <i>
-                    
+                    <div>
+                        <input type="file" onChange={(event)=>{setImageUpload(event.target.files[0])}}/>
+                    </div>
                     <label className='input-label'>HOBBIES/SPORTS/ACTIVITIES</label>
                     <input
                         type="text"

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react'
 import { auth, db } from '../firebase/config'
-import { doc, setDoc, FieldValue } from "firebase/firestore"; 
+import { doc, setDoc } from "firebase/firestore"; 
 
 
 
@@ -33,6 +33,7 @@ function SignUp({navigation}){
             }
         })
     }
+    
     // SIGN IN WITH PHONE NUMBER LAST ADDITION: https://firebase.google.com/docs/auth/web/phone-auth
     const submitAccount = async () => {
 
@@ -119,6 +120,7 @@ function SignUp({navigation}){
                         onChange={UserHandler}
                         value={user.lastName}
                         />
+                   
                     </i>
                     <i></i>
                     <i></i>

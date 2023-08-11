@@ -69,7 +69,6 @@
   position: absolute;
   width: 50px;
   height: 50px;
-  background-image: url(/src/SolarSystem/Carter.jpeg);
   background-size: cover;
   background-position: center center;              /* optional, center the image */
   background-repeat:   no-repeat;
