@@ -8,6 +8,8 @@ Today, a lot of the connections we think we maintain over social media have beco
 
 The two key features of the app are the relationship visualizations and sustaining real connections.
 
+See the Figma: https://www.figma.com/file/SmRKtGoQdmShqBVCOHJbxK/Solar?type=design&node-id=0%3A1&mode=design&t=r6Q3zx4NwkYRM9Kh-1
+
 #### Visualization
 The analogy goes like this:
 The main page has a UI that is a zoomable helio-centric model of the solar system -- but with you as the star in the center of your solar system (social circle).
