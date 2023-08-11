@@ -35,6 +35,8 @@
   
 .contact-text-container {
     width: 40%;
+    justify-content: left;
+    text-align: left;
 }
   
 .contact-buttons-container {

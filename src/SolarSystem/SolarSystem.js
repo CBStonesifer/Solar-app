@@ -8,6 +8,8 @@ import { auth, db, storage } from "../firebase/config";
 import Overlay from "./Overlay";
 import { signOut } from "firebase/auth";
 import { getDownloadURL, ref } from "firebase/storage";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 function SolarSystem({navigation}) {
     let navigate = useNavigate();
@@ -29,19 +31,20 @@ function SolarSystem({navigation}) {
         phoneNumber: "",
     })
 
-    const[newFriend, setNewFriend] = useState();
+    // const[newFriend, setNewFriend] = useState();
     const[pfp, setPFP] = useState()
 
     const findFriend = async( phoneNumber ) => {
         let userRef = collection(db, "users");
         let results = query(userRef, where('phoneNumber', '==', phoneNumber))
+        let newFriend;
 
         // Lof the first name of the user search for by phone Number
         await getDocs(results).then((soughtUser) => {
             if(!soughtUser.empty){
                 soughtUser.forEach(async (user)=> {
                     console.log(user.data().firstName)
-                    setNewFriend(user.id)
+                    newFriend = user.id
                 })
             } else {
                 console.log("Invite member to join")
@@ -51,6 +54,7 @@ function SolarSystem({navigation}) {
         let userDoc = doc(db, "users", (auth.currentUser.uid))
 
         //Update the freinds field in a user
+        console.log(newFriend)
         updateDoc(userDoc, {
             friend: arrayUnion(newFriend)
         }).then(userDoc => {
@@ -75,11 +79,10 @@ function SolarSystem({navigation}) {
         })
     }
 
-    const getPFP = async() => {
+    const getPFP = (user) => {
         const pfpRef = ref(storage, `profilePictures/pfp${auth.currentUser.uid}`)
         getDownloadURL(pfpRef).then((url) => {
             setPFP(url)
-            console.log(pfp)
         }).catch((error) => {
             console.log("No PFP found:"+ error)
         })
@@ -88,12 +91,30 @@ function SolarSystem({navigation}) {
 
     const TabHandler = (e) => {
         const { name } = e.target;
-        navigate(`/src/SolarSystem/Tabs/${name}.js`, {userID: auth.currentUser.uid})
+        navigate(`/src/SolarSystem/Tabs/${name}.js`)
     }
 
+    const getCurrentUser = async() => {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+            setUserID(user.uid)
+            getPFP(user.id)
+        });
+    }
+    const [userID, setUserID] = useState();
+
     useEffect(() => {
-        getPFP();
-    }, [pfp])
+        let user = auth.currentUser;
+        if (user == undefined) {
+            console.log("Loading User")
+            getCurrentUser()
+        } else if (!user) {
+                console.log("Who is logged in here?")
+        } else {
+            console.log("Current User: "+ auth.currentUser.uid);
+            getPFP();
+        }
+    }, [userID])
 
     //INSIDE THE OVERLAY below, Design a text field to look up users with their name and number, then add them to their database of friends:
     //Also design database of friends to collect users by category

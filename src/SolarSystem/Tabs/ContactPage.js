@@ -7,6 +7,7 @@ import { auth, db, storage } from "../../firebase/config"
 import { getDownloadURL, ref } from "firebase/storage";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Carter from '../Carter.jpeg'
+import Overlay from '../Overlay';
 
 
 function ContactPage({ navigation }){
@@ -20,17 +21,31 @@ function ContactPage({ navigation }){
         return (
                 <div className="contact-container">
                     <div className="contact-image-container">
-                        <img src={props.value.pfpUrl} alt="Image"/>
+                        <img src={props.value.data().pfpUrl} alt="Image"/>
                     </div>
                     <div className="contact-text-container">
-                        <p>{props.value.firstName} {props.value.lastName}</p>
+                        <p>{props.value.data().firstName} {props.value.data().lastName}</p>
+                        <p><b>Number:</b> {props.value.data().phoneNumber}</p>
+                        <p><b>Email:</b> {props.value.data().email}</p>
                     </div>
                     <div className="contact-buttons-container">
                         <button>Details</button>
-                        <button>Edit</button>
+                        <button onClick={() => toggleFriendEditor()}>Edit</button>
                     </div>
                 </div>
     )}
+    const [isOpen, setIsOpen] = useState(false);
+
+    function toggleFriendEditor() {
+      setIsOpen(!isOpen);
+
+    };
+
+    function FriendEditor(props) {
+        return(
+            <h1>{props.value.data().firstName}</h1>
+        )
+    }
 
     const getFriends = async () => {
         let userDoc = doc(db, "users", auth.currentUser.uid)
@@ -94,7 +109,7 @@ function ContactPage({ navigation }){
             <div>
                 {documents.map((doc) => (
                     <div key={doc.id}>
-                        <ListItem key={doc.id} value={doc.data()} />
+                        <ListItem key={doc.id} value={doc} />
                     </div>
                 ))}
             </div>
