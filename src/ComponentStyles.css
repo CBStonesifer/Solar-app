@@ -77,6 +77,10 @@
   border-radius: 10px;
 }
 
+.multi-input {
+  width: 80%;
+}
+
 .input-label {
   text-align: left;
   float: left;
@@ -129,4 +133,19 @@
   border-radius: 10px;
   cursor: pointer;
   text-align: center;
+}
+
+.custom-file-upload {
+  border: 1px solid var(--lightPurple);
+  background-color: var(--lightPurple);
+  font-size: 24px;
+  font-family: 'Borel';
+  font-weight: 800;
+  color: var(--midPurple);
+
+
+
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }

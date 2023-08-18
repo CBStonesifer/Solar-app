@@ -56,6 +56,8 @@ function SignUp({navigation}){
                         highSchool: user.highSchool,
                         college: user.college,
                         friend: [],
+                        interests: [],
+                        pfpUrl: "",
                     }
                     const docRef = doc(db, "users", userCred.uid)
                     

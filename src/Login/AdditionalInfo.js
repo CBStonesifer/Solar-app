@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react'
 import { auth, db, storage } from '../firebase/config'
-import { doc, setDoc } from "firebase/firestore"; 
+import { arrayUnion, doc, updateDoc } from "firebase/firestore"; 
 import { ref, uploadBytes } from "firebase/storage"
 
 
@@ -19,6 +19,19 @@ function AdditionalInfo({navigation}){
         }
     })
     const [imageUpload, setImageUpload] = useState(null)
+    const [inputs, setInputs] = useState([{ key: randomString(), value: '' }]);
+
+    function randomString() {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < 8) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          counter += 1;
+        }
+        return result;
+      }
 
 
     const UserHandler = (e) => {
@@ -40,14 +53,47 @@ function AdditionalInfo({navigation}){
         })
     }
 
-    const sumbitForm = () => {
+    const sumbitForm = async (event) => {
+        event.preventDefault();
         uploadImage()
+        const valuesArray = inputs.map(input => input.value);
+        console.log(valuesArray);
+        const docRef = doc(db, "users", auth.currentUser.uid)
+        let data = {
+            interests: valuesArray,
+            pfpUrl: `profilePictures/pfp${auth.currentUser.uid}`,
+        }
+        await updateDoc(docRef, data)
+        console.log("Submit additional info");
         //Update fields here
             //IMPORTANT: Upload profile picture URL into pfpURL
 
 
         navigate("../../src/SolarSystem/SolarSystem.js")
     }
+
+
+    const addInput = () => {
+        setInputs([
+          ...inputs,
+          { key: randomString(), value: '' }
+        ]);
+      };
+
+    const handleInputChange = (e, index) => {
+        const newInputs = [...inputs];
+        newInputs[index].value = e.target.value;
+        setInputs(newInputs);
+    };
+
+    const removeInput = (inputToRemove) => {
+        setInputs(inputs.filter((input) => input.key !== inputToRemove.key));
+      };
+    
+      const interestSubmit = async (event) => {
+        
+
+      };
 
 
     return(
@@ -74,54 +120,59 @@ function AdditionalInfo({navigation}){
                 <i></i>
                     <i></i>
                     <i>
-                    <div>
-                        <input type="file" onChange={(event)=>{setImageUpload(event.target.files[0])}}/>
-                    </div>
+                    
                     <label className='input-label'>HOBBIES/SPORTS/ACTIVITIES</label>
-                    <input
-                        type="text"
-                        className="input-box"
-                        placeholder={`Input Info Here...`}
-                        name = 'firstName'
-                        onChange={UserHandler}
-                        value={user.additionalInfo.activities}
-                        />
+                    
+                    <form>
+                        {inputs.map((input, index) => (
+                        <div key={input.key} className="form-group">
+                            <input
+                            type="text"
+                            className="input-box"
+                            name = "activity"
+                            placeholder={`Add an interest`}
+                            value={input.value}
+                            onChange={(e) => handleInputChange(e, index)}
+                            />
+                            <button
+                            type="button"
+                            className="custom-file-upload"
+                            onClick={() => removeInput(input)}
+                            >
+                            Remove
+                            </button>
+                        </div>
+                        ))}
+                        <button
+                        type="button"
+                        onClick={addInput}
+                        >
+                        Add Another Interest
+                        </button>
+                        <button onClick={(e) => interestSubmit(e)}>Submit interests</button>
+                    </form>
+
+
+
                     </i>
                     <i></i>
+                    <i><label className='input-label bold-text'>FAVORITE HANGOUTS</label></i>
+                    <div>
+                    
+                        
+                    </div>
                     <i></i>
-                    <i>
-                    <label className='input-label'>CLUBS</label>
-                    <input
-                        type="text"
-                        className="input-box"
-                        name = 'email'
-                        placeholder={`Clubs Here...`}
-                        onChange={UserHandler}
-                        value={user.additionalInfo.clubs}
-                        />
-                        </i>
                     <i></i>
-                    <i><label className='input-label bold-text'>Places</label></i>
+                    <i><input type="file" className='custom-file-upload' onChange={(event)=>{setImageUpload(event.target.files[0])}}/></i>
                     <i></i>
                     <i></i>
                     <i></i>
-                    <i>
-                    <label className='input-label'>FAVORITE HANGOUTS</label>
-                    <input
-                        type="text"
-                        className="input-box"
-                        placeholder={`Hangouts Here...`}
-                        name = 'hangOuts'
-                        onChange={UserHandler}
-                        value={user.additionalInfo.hangOuts}
-                        />
-                    </i>
                     <i></i>
                     <i></i>
                     <i></i>
                     
                 </div>
-                <button id='proceed' className='next-button' onClick={sumbitForm} >Submit</button>
+                <button id='proceed' className='next-button' onClick={(e) => sumbitForm(e)} >Submit</button>
             </i>
             </div>
         </div>
@@ -130,3 +181,16 @@ function AdditionalInfo({navigation}){
 }
 
 export default AdditionalInfo
+
+/**
+ * <input
+                        type="text"
+                        className="input-box"
+                        placeholder={`Input Info Here...`}
+                        name = 'activites'
+                        onChange={UserHandler}
+                        value={user.additionalInfo.activities}
+                        />
+
+
+ */
