@@ -41,19 +41,18 @@ function ContactPage({ navigation }){
 
     };
 
-    function FriendEditor(props) {
-        return(
-            <h1>{props.value.data().firstName}</h1>
-        )
-    }
-
     const getFriends = async () => {
         let userDoc = doc(db, "users", auth.currentUser.uid)
         
         await getDoc(userDoc).then(Fdoc => {
             try{
+                let friendLevels = Fdoc.data().friend
+                const allFriends = [];
+                for (const key in friendLevels) {
+                    allFriends.push(...friendLevels[key]);
+                }
                 // parse the users friends and lookup their documents in the database
-                setContacts(Fdoc.data().friend)
+                setContacts(allFriends)
                 console.log("Loaded Friends: "+contacts)
             } catch {
                 console.log("Current user info not found")

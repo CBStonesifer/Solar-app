@@ -55,15 +55,17 @@ function SignUp({navigation}){
                         currentCity: user.currentCity,
                         highSchool: user.highSchool,
                         college: user.college,
-                        friend: [],
+                        friend: {},
                         interests: [],
                         pfpUrl: "",
                     }
+
                     const docRef = doc(db, "users", userCred.uid)
                     
-                    await setDoc(docRef, data)
-                    console.log("Document written with ID: ", docRef.id);
-                    navigate("/src/Login/AdditionalInfo.js")
+                    await setDoc(docRef, data).then(() => {
+                        console.log("Document written with ID: ", docRef.id);
+                        navigate("/src/Login/AdditionalInfo.js")
+                    })
                 } catch (e) {
                     console.error("Error adding document: ", e);
                 }

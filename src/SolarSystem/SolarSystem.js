@@ -30,8 +30,7 @@ function SolarSystem({navigation}) {
         email: "",
         phoneNumber: "",
     })
-
-    // const[newFriend, setNewFriend] = useState();
+    const[friendLevel, setFriendLevel] = useState();
     const[pfp, setPFP] = useState()
 
     const findFriend = async( phoneNumber ) => {
@@ -56,9 +55,9 @@ function SolarSystem({navigation}) {
         //Update the freinds field in a user
         console.log(newFriend)
         updateDoc(userDoc, {
-            friend: arrayUnion(newFriend)
+            [`friend.${friendLevel}`]: arrayUnion(newFriend)
         }).then(userDoc => {
-            console.log("Updated fields")
+            console.log("Updated fields, "+newFriend+" is a "+ friendLevel+" friend")
         }).catch(error => {
             console.log(error)
         })
@@ -147,6 +146,22 @@ function SolarSystem({navigation}) {
 
 
                 <Overlay isOpen={isOpen} onClose={toggleOverlay}>
+
+                <div>
+                    <label className='input-label'>Pick a fruit:</label>
+                </div>
+                <div>
+                    <select name="friendLevel" defaultValue="good" onChange={e => setFriendLevel(e.target.value)}>
+                            <option value="best">Best</option>
+                            <option value="close">Close</option>
+                            <option value="good">Good</option>
+                            <option value="friendly">Friendly</option>
+                            <option value="aquaintance">Aquaintance</option>
+                            <option value="comet">Comet</option>
+
+                    </select>
+                </div>
+                <div>
                 <label className='input-label'>User Phone Number</label>
                     <input
                         type="text"
@@ -157,6 +172,7 @@ function SolarSystem({navigation}) {
                         value={findUser.phoneNumber}
                         />
                         <button id='proceed' className='next-button' onClick={() => findFriend(findUser.phoneNumber)}>Search</button>
+                </div>
                 </Overlay>
 
 

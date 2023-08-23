@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react'
 import { auth, db, storage } from '../firebase/config'
 import { arrayUnion, doc, updateDoc } from "firebase/firestore"; 
-import { ref, uploadBytes } from "firebase/storage"
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 
 
 
@@ -20,6 +20,7 @@ function AdditionalInfo({navigation}){
     })
     const [imageUpload, setImageUpload] = useState(null)
     const [inputs, setInputs] = useState([{ key: randomString(), value: '' }]);
+    const [profileURL, setProfileUrl] = useState()
 
     function randomString() {
         let result = '';
@@ -44,27 +45,36 @@ function AdditionalInfo({navigation}){
         })
     }
     const uploadImage = () => {
-        if(imageUpload == null){
-            return;
-        }
-        const imageRef = ref(storage, `profilePictures/pfp${auth.currentUser.uid}`)
-        uploadBytes(imageRef, imageUpload).then(() => {
-            console.log("Image Uploaded")
-        })
+        
     }
 
     const sumbitForm = async (event) => {
         event.preventDefault();
-        uploadImage()
-        const valuesArray = inputs.map(input => input.value);
-        console.log(valuesArray);
-        const docRef = doc(db, "users", auth.currentUser.uid)
-        let data = {
-            interests: valuesArray,
-            pfpUrl: `profilePictures/pfp${auth.currentUser.uid}`,
+
+        if(imageUpload == null){
+            return;
         }
-        await updateDoc(docRef, data)
-        console.log("Submit additional info");
+        const valuesArray = inputs.map(input => input.value);
+        const docRef = doc(db, "users", auth.currentUser.uid)
+        const imageRef = ref(storage, `profilePictures/pfp${auth.currentUser.uid}`)
+        uploadBytes(imageRef, imageUpload).then(() => {
+            getDownloadURL(imageRef).then(async (url) => {
+                console.log("Image Uploaded: "+ url)
+                let data = {
+                    interests: valuesArray,
+                    pfpUrl: url,
+                }
+                await updateDoc(docRef, data)
+            }).catch((error) => {
+                console.log(error)
+            })
+        })
+
+        
+        console.log(valuesArray);
+        
+        
+        console.log("Submitted additional info");
         //Update fields here
             //IMPORTANT: Upload profile picture URL into pfpURL
 
