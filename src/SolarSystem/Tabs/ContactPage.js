@@ -97,14 +97,11 @@ function ContactPage({ navigation }){
     return(
         <div className="entry-page">
             <div id='inputs' className='grid'>
-            <div>
+            
                 <button className='back-button' onClick={() => navigate(-1)}>Back</button>
-            </div>
-            <div>
+            
                 <h1 className="bold-title">Contacts</h1>
-            </div>
-            <div></div>
-            <div></div>
+            
             <div>
                 {documents.map((doc) => (
                     <div key={doc.id}>

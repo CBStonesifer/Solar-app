@@ -1,15 +1,10 @@
-:root {
-    --whiteColor: rgb(255, 255, 255);
-    --lightPurple:rgb(255, 208, 249);
-    --midPurple:rgb(138, 43, 226);
-    --darkPurple: rgb(68, 0, 131);
-  }
-
 .solar-page {
     text-align: center;
     background-color: var(--whiteColor);
-    width: 100vw;
-    height: 100vh;
+    width: 414px; /* Set the width of the page */
+    height: 896px; /* Set the height of the page */
+    margin: 0; /* Remove default margin to fill the entire viewport */
+    padding: 0;
   }
 
   .interactive-system {
@@ -21,8 +16,8 @@
 
   .container {
     display: grid;
-    height: 100vh;
-    width: 100%;
+    height: auto;
+    width: 100vw;
   
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 8fr 2fr;
@@ -50,8 +45,8 @@
   .content {
     background-color: var(--lightPurple);
     grid-area: contents;
-    border-top-left-radius: 100px;
-    border-top-right-radius: 100px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
   }
 
   .solar-main-title {
@@ -66,7 +61,6 @@
   }
 
   .layout-main {
-
     grid-template-columns: 1fr 1fr 1fr 1fr;
     display: grid;
     grid-auto-rows: 10vh;
@@ -74,7 +68,7 @@
   }
 
   .grid-item-main {
-    margin-top: 60px;
+    margin-top: 15vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,11 +76,12 @@
 
   .grid-item-button {
     background-color: var(--lightPurple);
-    width: 120px;
-    height: 120px;
+    width: 21.35vw;
+    height: 21.35vw;
   }
   .menu-item {
     background-size: contain;
+    background-color: transparent;
     background-position: center center;
     background-repeat:   no-repeat;
     border: none;
@@ -103,4 +98,33 @@
   }
   .inbox {
     background-image: url(/src/SolarSystem/imbox.png);
+  }
+
+
+  @media (max-width: 500px) {
+    .solar-page {
+      text-align: center;
+      background-color: var(--whiteColor);
+      width: min-content;
+      height: 100%;
+    }
+    .container {
+      display: grid;
+      height: 100%;
+      width: min-content;
+    
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 8fr 2fr;
+      grid-template-areas:
+        "sidebar"
+        "main"
+        "contents";
+      grid-gap: 3px;
+    }
+
+    .sidebar {
+      background-color: var(--whiteColor);
+      grid-area: sidebar;
+      height :100%;
+    }
   }

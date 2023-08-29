@@ -1,6 +1,15 @@
 .App {
   text-align: center;
-  background-color: blueviolet;
+  background-color: var(--midPurple);
   width: 100vw;
   height: 100vh;
+}
+
+@media (max-width: 500px){
+  .App {
+    text-align: center;
+    background-color: var(--midPurple);
+    width: 414px;
+    height: 896px;
+  }
 }

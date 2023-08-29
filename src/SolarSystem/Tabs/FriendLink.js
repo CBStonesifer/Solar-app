@@ -59,10 +59,14 @@ function FriendLink({navigation}){
                     let userDoc = doc(db, "users", allFriends[file])
                     await getDoc(userDoc).then(async f => {
                         try{
-                            let search = await f.data().interests
-                            if(search.includes(fields.interests)){
+                            let searchInterests = await f.data().interests
+                            let searchCity = await f.data().currentCity
+                            console.log("Interest: ", (fields.interests == '' || searchInterests.includes(fields.interests)))
+                            console.log("City:", (fields.location == '' || searchCity == fields.location))
+                            if((fields.interests == '' || searchInterests.includes(fields.interests))
+                            && (fields.location == '' || searchCity == fields.location)){
                                 filteredFriends.push(allFriends[file])
-                            }  
+                            }
                         } catch {
                             console.log("Cannot find user")
                         }
@@ -115,55 +119,40 @@ function FriendLink({navigation}){
 
     return(
         <div className="entry-page">
+        <header>
+            <button className='back-button' onClick={() => navigate(-1)}>Back</button>
+        </header>
             <div id='inputs' className='grid'>
-                <div>
-                    <button className='back-button' onClick={() => navigate(-1)}>Back</button>
-                </div>
-                <div>
-                    <h1 className="bold-title">Link with Friends</h1>
-                </div>
-                <div/>
-                <div/>
-                <div>
-                    <p className='info-text title-spacing'>Search your Solar System to see who's down to clown</p>
-                </div>
-                <div/>
-                <div/>
-                <div>
-                    <div>
-                        <label className='input-label'>INTEREST</label>
-                        <input
-                            type="text"
-                            className="input-box"
-                            placeholder={`Enter Interest Here...`}
-                            name = 'interests'
-                            onChange={UserHandler}
+                <h1 className="bold-title">Link with Friends</h1>
+                <p className='info-text title-spacing'>Search your Solar System to see who's down to clown</p>  
+                <label className='input-label'>INTEREST</label>
+                <input
+                    type="text"
+                    className="input-box"
+                    placeholder={`Enter Interest Here...`}
+                    name = 'interests'
+                    onChange={UserHandler}
+                />
+                    
+                    
+                <label className='input-label'>LOCATION</label>
+                <input
+                    type="text"
+                    className="input-box"
+                     placeholder={`Enter Location Here...`}
+                    name = 'location'
+                    onChange={UserHandler}
                             
-                            />
-                    </div>
-                    <div>
-                        <label className='input-label'>LOCATION</label>
-                        <input
-                            type="text"
-                            className="input-box"
-                            placeholder={`Enter Location Here...`}
-                            name = 'location'
-                            onChange={UserHandler}
-                            
-                            />
-                    </div>
-                    <button id='proceed' className='next-button' onClick={() => returnFields()}>Search</button>
-                </div>
-                <div/>
-                <div/>
-                <div>
+                />
+            </div>
+            <button id='proceed' className='next-button' onClick={() => returnFields()}>Search</button>
+                
+            <div>
                 {documents.map((doc) => (
                     <div key={doc.id}>
                         <ListItem key={doc.id} value={doc} />
                     </div>
                 ))}
-                </div>
-            
             </div>
         </div>
         

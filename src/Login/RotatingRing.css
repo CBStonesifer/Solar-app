@@ -1,11 +1,13 @@
 /* styles.css */
 .rings-container {
+  padding: 125px 130px 100px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20%;
-  margin-bottom: 200px;
+  width: 152.134px;
+  height: 153.715px;
+  flex-shrink: 0;
 }
 
 .big-ring {

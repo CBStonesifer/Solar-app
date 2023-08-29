@@ -13,8 +13,8 @@
 .entry-page {
   text-align: center;
   background-color: var(--lightPurple);
-  width: 100vw;
-  height: 120vh;
+  width: auto;
+  height: 100%;
 }
 
 .back-button {
@@ -23,10 +23,19 @@
   font-family: 'Borel';
   font-weight: 800;
   color: var(--midPurple);
-  font-size: 32px;
+  font-size: 30px;
   border: none;
-  margin-top: 5%;
   cursor: pointer;
+  width: 85px;
+  height: 45px;
+  margin: 5px;
+  
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+  border: 3px solid lime;
 }
 
 .solar-title {
@@ -62,7 +71,7 @@
 .info-text {
   text-align: left;
   color: var(--darkPurple);
-  font-size: 18px;
+  font-size: 14px;
   text-decoration: none;
   font-family: 'Raleway', sans-serif;
 }
@@ -89,10 +98,16 @@
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  column-gap: 10px;
-  row-gap: 1em;
+  margin-top: 50px;
+  margin-left: 5%;
+  margin-left: 5%;
+  position: relative;
+  width: 80vw;
+  height:fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content: left;
 }
 
 .title-spacing {
@@ -105,7 +120,7 @@
 .bold-title {
   text-align: left;
   color: var(--midPurple);
-  font-size: 72px;
+  font-size: 50px;
   text-decoration: none;
   font-family: 'Borel', sans-serif;
   font-weight: 900;
@@ -113,7 +128,7 @@
 .regular-title {
   text-align:left;
   color: var(--midPurple);
-  font-size: 56px;
+  font-size: 36px;
   text-decoration: none;
   font-family: 'Borel', sans-serif;
   font-weight: 100;

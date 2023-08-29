@@ -178,19 +178,17 @@ function SolarSystem({navigation}) {
 
                 </div>
                 <div className="content">
-                <div className="layout-main ">
-                <i className="grid-item-main">
-                    <button className="grid-item-button menu-item reminder" name="FriendReminder" onClick={TabHandler}>
-                    </button>
-                </i>
-                <i className="grid-item-main"><button className="grid-item-button menu-item link"
-                name="FriendLink" onClick={TabHandler}></button></i>
-                <i className="grid-item-main"><button className="grid-item-button menu-item contact"
-                name="ContactPage" onClick={TabHandler}></button></i>
-                <i className="grid-item-main"><button className="grid-item-button menu-item inbox"
-                name="FriendUpdates" onClick={TabHandler}></button></i>
-                </div>
-
+                    <div className="layout-main ">
+                    <i className="grid-item-main">
+                        <button className="grid-item-button menu-item reminder" name="FriendReminder" onClick={TabHandler}></button>
+                    </i>
+                    <i className="grid-item-main"><button className="grid-item-button menu-item link"
+                    name="FriendLink" onClick={TabHandler}></button></i>
+                    <i className="grid-item-main"><button className="grid-item-button menu-item contact"
+                    name="ContactPage" onClick={TabHandler}></button></i>
+                    <i className="grid-item-main"><button className="grid-item-button menu-item inbox"
+                    name="FriendUpdates" onClick={TabHandler}></button></i>
+                    </div>
                 </div>
             </div>
             

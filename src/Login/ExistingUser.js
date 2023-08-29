@@ -54,31 +54,18 @@ function ExistingUser(){
     let navigate = useNavigate();
     return(
         <div className="entry-page">
+        <header>
+        <button className='back-button' onClick={() => navigate(-1)}>Back</button>
+        </header>
             <div>
                 <div className='grid'>
-                    <i>
-                     <button className='back-button' onClick={() => navigate(-1)}>Back</button>
-                    </i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i>
-                        <p className="bold-title title-spacing"> LOG IN</p>
-                    </i>
-                    <i></i>
-                    <i></i>
-                    <i>
+                    
+                        <p className="bold-title title-spacing"> Log In</p>
                         <p className='regular-title title-spacing'>Enter Your Details </p>
-                    </i>
-                    <i></i>
-                    <i></i>
+                    
                     <div id='usrInfo' className='grid'>
-                    <i><label className='input-label bold-text'>LOG IN DETAILS</label></i>
-                    <i></i>
-                    <i></i>
-                        <i></i>
-                        <i>
-                        
+                    <label className='input-label bold-text'>LOG IN DETAILS</label>
+                    
                         <label className='input-label'>EMAIL</label>
                         <input
                             type="text"
@@ -98,15 +85,12 @@ function ExistingUser(){
                             onChange={UserHandler}
                             value={user.password}
                             />
-                        </i>
-                        <i></i>
+                        
                         </div>
-                        <i></i>
-                    <i></i>
-                    <i>
-                        <button id='proceed' className='next-button' onClick={submitLogIn}>Login</button>
-                    </i>
+                        
+                    
                 </div>
+                <button id='proceed' className='next-button' onClick={submitLogIn}>Login</button>
             </div>
         </div>
     )

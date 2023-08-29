@@ -100,36 +100,21 @@ function AdditionalInfo({navigation}){
         setInputs(inputs.filter((input) => input.key !== inputToRemove.key));
       };
     
-      const interestSubmit = async (event) => {
-        
-
-      };
-
-
     return(
         <div className="entry-page">
+            <button className='back-button' onClick={() => navigate(-1)}>Back</button>
+
             <div id='inputs' className='grid'>
-            <i>
-                <button className='back-button' onClick={() => navigate(-1)}>Back</button>
-            </i>
-            <i></i>
-            <i></i>
-            <i></i>
-            <i>
+            
+            
                 <p className="bold-title title-spacing"> Add</p>
                 <p className='regular-title title-spacing'>Your</p>
                 <p className='regular-title title-spacing'>Life Details</p>
                 <p className='info-text title-spacing'>Add details about you that give your friends more opportunities to foster conenctions</p>
-            </i>
-            <i></i>
-            <i></i>
-            <i>
+            
             <div id='usrInfo' className='grid'>
-                <i><label className='input-label bold-text'>Interests</label></i>
-                <i></i>
-                <i></i>
-                    <i></i>
-                    <i>
+                <label className='input-label bold-text'>Interests</label>
+                
                     
                     <label className='input-label'>HOBBIES/SPORTS/ACTIVITIES</label>
                     
@@ -155,35 +140,19 @@ function AdditionalInfo({navigation}){
                         ))}
                         <button
                         type="button"
+                        className="custom-file-upload"
                         onClick={addInput}
                         >
                         Add Another Interest
                         </button>
-                        <button onClick={(e) => interestSubmit(e)}>Submit interests</button>
                     </form>
 
-
-
-                    </i>
-                    <i></i>
-                    <i><label className='input-label bold-text'>FAVORITE HANGOUTS</label></i>
-                    <div>
-                    
-                        
-                    </div>
-                    <i></i>
-                    <i></i>
-                    <i><input type="file" className='custom-file-upload' onChange={(event)=>{setImageUpload(event.target.files[0])}}/></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    
+                    <label className='input-label bold-text'>FAVORITE HANGOUTS</label>
+                    <input type="file" className='custom-file-upload' onChange={(event)=>{setImageUpload(event.target.files[0])}}/>
+                   
                 </div>
                 <button id='proceed' className='next-button' onClick={(e) => sumbitForm(e)} >Submit</button>
-            </i>
+            
             </div>
         </div>
         

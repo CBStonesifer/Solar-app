@@ -82,29 +82,20 @@ function SignUp({navigation}){
 
     return(
         <div className="entry-page">
+        <header>
+            <button className='back-button' onClick={() => navigate(-1)}>Back</button>
+        </header>
+        <body>
             <div id='inputs' className='grid'>
-            <i>
-                <button className='back-button' onClick={() => navigate(-1)}>Back</button>
-            </i>
-            <i></i>
-            <i></i>
-            <i></i>
-            <i>
+            
                 <p className="bold-title title-spacing"> Create</p>
                 <p className='regular-title title-spacing'>Your</p>
                 <p className='regular-title title-spacing'>Contact Card</p>
                 <p className='info-text title-spacing'>Fill out your information so you friends don't have to!</p>
-            </i>
-            <i></i>
-            <i></i>
-            <i>
+            
             <div id='usrInfo' className='grid'>
-                <i><label className='input-label bold-text'>USER INFORMATION</label></i>
-                <i></i>
-                <i></i>
-                    <i></i>
-                    <i>
-                    
+                <label className='input-label bold-text'>USER INFORMATION</label>
+                
                     <label className='input-label'>FIRST NAME</label>
                     <input
                         type="text"
@@ -125,10 +116,8 @@ function SignUp({navigation}){
                         value={user.lastName}
                         />
                    
-                    </i>
-                    <i></i>
-                    <i></i>
-                    <i>
+                    
+                    
                     <label className='input-label'>EMAIL</label>
                     <input
                         type="text"
@@ -138,10 +127,7 @@ function SignUp({navigation}){
                         onChange={UserHandler}
                         value={user.email}
                         />
-                        </i>
-                    <i></i>
-                    <i></i>
-                    <i>
+                        
                     <label className='input-label'>PHONE NUMBER</label>
                     <input
                         type="text"
@@ -151,10 +137,7 @@ function SignUp({navigation}){
                         onChange={UserHandler}
                         value={user.phoneNumber}
                         />
-                    </i>
-                    <i></i>
-                    <i></i>
-                    <i>
+                    
                     
                     <label className='input-label'>NEW PASSWORD</label>
                     <input
@@ -174,15 +157,11 @@ function SignUp({navigation}){
                         onChange={UserHandler}
                         value={user.confirmPassword}
                         />
-                    </i>
+                    
                     
                 </div>
             <div id= 'background info' className='grid'>
-                <i><label className='input-label bold-text'>USER BACKGROUND</label></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i>
+                <label className='input-label bold-text'>USER BACKGROUND</label>
                     <label className='input-label'>CITY FROM</label>
                     <input
                         id = 'usrFrom'
@@ -194,10 +173,7 @@ function SignUp({navigation}){
                         value={user.homeCity}
                         />
                     
-                </i>
-                <i></i>
-                <i></i>
-                    <i>
+                
                     <label className='input-label'>CITY YOU RESIDE</label>
                     <input
                         id = 'usrCity'
@@ -208,10 +184,7 @@ function SignUp({navigation}){
                         onChange={UserHandler}
                         value={user.currentCity}
                         />
-                    </i>
-                    <i></i>
-                    <i></i>
-                    <i>
+                    
                     <label className='input-label'>HIGHSCHOOL</label>
                     <input
                         id= 'usrHS'
@@ -222,10 +195,7 @@ function SignUp({navigation}){
                         onChange={UserHandler}
                         value={user.highSchool}
                         />
-                        </i>
-                    <i></i>
-                    <i></i>
-                    <i>
+                    
                     <label className='input-label'>COLLEGE</label>
                     <input
                         id = "usrCollege"
@@ -236,15 +206,11 @@ function SignUp({navigation}){
                         onChange={UserHandler}
                         value={user.college}
                         />
-                    </i>
+                    
                 </div>
-            </i>
-            <i></i>
-            <i></i>
-            <i>
-                <button id='proceed' className='next-button' onClick={() => submitAccount()}>Next</button>
-            </i>
             </div>
+                <button id='proceed' className='next-button' onClick={() => submitAccount()}>Next</button>
+            </body>
         </div>
         
     )
