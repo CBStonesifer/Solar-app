@@ -53,7 +53,7 @@ function ExistingUser(){
 
     let navigate = useNavigate();
     return(
-        <div className="entry-page">
+        <div className="entry-page stop-scroll">
         <header>
         <button className='back-button' onClick={() => navigate(-1)}>Back</button>
         </header>

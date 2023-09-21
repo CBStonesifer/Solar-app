@@ -5,11 +5,15 @@
   height: 100vh;
 }
 
+.stop-scroll{
+  overflow: hidden;
+}
+
 @media (max-width: 500px){
   .App {
     text-align: center;
     background-color: var(--midPurple);
-    width: 414px;
-    height: 896px;
+    width: 428px;
+    height: 926px;
   }
 }

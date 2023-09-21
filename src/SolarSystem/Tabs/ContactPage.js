@@ -96,9 +96,10 @@ function ContactPage({ navigation }){
 
     return(
         <div className="entry-page">
+            <button className='back-button' onClick={() => navigate(-1)}>Back</button>
+
             <div id='inputs' className='grid'>
             
-                <button className='back-button' onClick={() => navigate(-1)}>Back</button>
             
                 <h1 className="bold-title">Contacts</h1>
             

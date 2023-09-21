@@ -130,6 +130,7 @@ function FriendLink({navigation}){
                     type="text"
                     className="input-box"
                     placeholder={`Enter Interest Here...`}
+                    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
                     name = 'interests'
                     onChange={UserHandler}
                 />

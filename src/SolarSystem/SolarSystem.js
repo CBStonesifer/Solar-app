@@ -9,6 +9,7 @@ import Overlay from "./Overlay";
 import { signOut } from "firebase/auth";
 import { getDownloadURL, ref } from "firebase/storage";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Electrons from './Atom'
 
 
 function SolarSystem({navigation}) {
@@ -117,7 +118,14 @@ function SolarSystem({navigation}) {
 
     //INSIDE THE OVERLAY below, Design a text field to look up users with their name and number, then add them to their database of friends:
     //Also design database of friends to collect users by category
-
+    const friends = ["Friend1", "Friend2", "Friend3", "Friend4", "Friend5"]; // Replace with your array of friends
+    const friends2 = ["Friend1", "Friend2", "Friend3", "Friend4", "Friend5",
+                        "Friend6", "Friend7", "Friend8", "Friend9", "Friend10", "Friend11", "F12", "Friend1", "Friend2", "Friend3", "Friend4", "Friend5",
+                        "Friend6", "Friend7", "Friend8", "Friend9", "Friend10", "Friend11", "F12" ];
+    const friends3 = ["Friend1", "Friend2", "Friend3", "Friend4", "Friend5",
+                        "Friend6", "Friend7"]; // Replace with your array of friends
+    const centerX = 200
+    const centerY = 200
     return (
         <div className="solar-page">
             <div className="container">
@@ -130,18 +138,23 @@ function SolarSystem({navigation}) {
                 <div className="main interactive-system">
                     <MapInteractionCSS
                         defaultValue={{
-                            scale: 4,
-                            translation: { x: 0, y: 300 }
+                            scale: 1,
+                            translation: { x: 10, y: 0 }
                         }}
                         minScale={0.5}
                         maxScale={5}
                         translationBounds={{
                             xMax: 1100,
                             yMax:800,
-                            yMin:-50,
+                            yMin:-1000,
                             xMin:-1100,
                         }}>
-                            <InteractiveSystem value={pfp}/>
+                            <svg width={centerX*2} height={centerY*2}>
+                                <Electrons friends={friends3} cx={centerX} cy={centerY} radius={180} speed={37000}/>
+                                <Electrons friends={friends2} cx={centerX} cy={centerY} radius={110} speed={80000}/>
+                                <Electrons friends={friends} cx={centerX} cy={centerY} radius={50} speed={30000}/>
+                                <circle cx={centerX} cy={centerY} r="20" fill= "#000000" />
+                            </svg>
                 </MapInteractionCSS>
 
 

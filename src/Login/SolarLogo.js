@@ -8,7 +8,7 @@ function SolarLogo(){
 
 
     return(
-      <div className='App'>
+      <div className='App stop-scroll'>
         <div className="rings-container">
           <div className="big-ring">
             <div className="circle circle-small"></div>

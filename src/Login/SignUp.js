@@ -85,7 +85,6 @@ function SignUp({navigation}){
         <header>
             <button className='back-button' onClick={() => navigate(-1)}>Back</button>
         </header>
-        <body>
             <div id='inputs' className='grid'>
             
                 <p className="bold-title title-spacing"> Create</p>
@@ -210,7 +209,6 @@ function SignUp({navigation}){
                 </div>
             </div>
                 <button id='proceed' className='next-button' onClick={() => submitAccount()}>Next</button>
-            </body>
         </div>
         
     )

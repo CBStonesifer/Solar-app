@@ -8,14 +8,10 @@ function FriendReminder({navigation}){
 
     return(
         <div className="entry-page">
+            <button className='back-button' onClick={() => navigate(-1)}>Back</button>
+
             <div id='inputs' className='grid'>
-            <div>
-                <button className='back-button' onClick={() => navigate(-1)}>Back</button>
-            </div>
-            <div>
-                <h1>Reminders</h1>
-            </div>
-            
+            <h1>Reminders</h1>
             </div>
         </div>
         

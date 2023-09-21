@@ -13,8 +13,9 @@
 .entry-page {
   text-align: center;
   background-color: var(--lightPurple);
-  width: auto;
-  height: 100%;
+  width: 100vw;
+  min-height: 100vh;
+  height:fit-content;
 }
 
 .back-button {
@@ -35,7 +36,6 @@
   top: 0px;
   left: 0px;
   text-align: center;
-  border: 3px solid lime;
 }
 
 .solar-title {
@@ -84,6 +84,7 @@
   border-width: 3px;
   margin: 3px;
   border-radius: 10px;
+  
 }
 
 .multi-input {

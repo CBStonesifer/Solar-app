@@ -5,6 +5,7 @@
     height: 896px; /* Set the height of the page */
     margin: 0; /* Remove default margin to fill the entire viewport */
     padding: 0;
+    overflow: hidden;
   }
 
   .interactive-system {
@@ -76,8 +77,8 @@
 
   .grid-item-button {
     background-color: var(--lightPurple);
-    width: 21.35vw;
-    height: 21.35vw;
+    width: 21.5vw;
+    height: 21.5vw;
   }
   .menu-item {
     background-size: contain;

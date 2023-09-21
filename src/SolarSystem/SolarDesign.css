@@ -68,8 +68,8 @@
 
 .center-circle-main {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background-size: cover;
   background-position: center center;              /* optional, center the image */
   background-repeat:   no-repeat;
